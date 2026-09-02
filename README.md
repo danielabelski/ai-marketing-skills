@@ -26,6 +26,7 @@ These aren't prompts. They're complete workflows — scripts, scoring algorithms
 | [**Autoresearch**](./autoresearch/) | Karpathy-inspired optimization loops for conversion content — 50+ variants, expert scoring, evolved winners | Variant Generator, Expert Panel Scorer, Evolution Engine |
 | [**Deck Generator**](./deck-generator/) | AI-generated slide decks with consistent visual styles in minutes | Image Generator, Google Slides Builder, Style Presets |
 | [**YT Competitive Analysis**](./yt-competitive-analysis/) | Find outlier videos and packaging patterns across any YouTube channels | Outlier Detector, Title Pattern Extractor, Channel Benchmarker |
+| [**YouTube Packaging**](./packaging-youtube-thumbnails/) | Create, render, revise, and learn from evidence-backed title-thumbnail packages | Channel Profiles, Package Scoring, Visual QA, Performance Learning |
 | [**Video Content Engine**](./video-content-engine/) | Diagnose any video and route it into the strongest justified content portfolio | Long-form Optimizer, Shorts Engine, Tutorial, Case Study, Paid Creative |
 | [**Agentic Video Understanding**](./agentic-video-understanding/) | Goal-directed moment extraction from long video/audio via Gemini (cheaper than fixed-FPS ingest) | Moment Finder, Hook Hunt, Call Mining, Loom Bar Evidence |
 | [**Show-and-Tell Video Slate**](./show-and-tell-video-slate/) | Turn real builds and first-party proof into ranked 15-minute video episodes before production | Evidence Inventory, Episode Scoring, Packaging Gates, Shoot Order |
@@ -66,12 +67,21 @@ python experiment-engine.py create \
 
 ## 🧠 How These Work with Claude Code
 
-Every category includes a `SKILL.md` file. Drop it into your Claude Code project and the AI agent knows how to use the tools:
+Every category includes a `SKILL.md` file. Copy the complete skill directory when it also contains `scripts/`, `references/`, `agents/`, or other bundled files. Copying only `SKILL.md` will leave those workflows incomplete.
 
 ```
 # In your project directory
 cp ai-marketing-skills/growth-engine/SKILL.md .claude/skills/growth-engine.md
 ```
+
+For a bundled skill such as YouTube Packaging, install the full directory:
+
+```bash
+cp -R ai-marketing-skills/packaging-youtube-thumbnails \
+  .claude/skills/packaging-youtube-thumbnails
+```
+
+Other agent harnesses should import the same complete directory and use its `SKILL.md` as the entry point. OpenAI-compatible harnesses can also read `agents/openai.yaml` for display metadata and the default prompt.
 
 Then ask Claude Code: *"Run an experiment testing carousel vs. static posts on LinkedIn"* — it handles the rest.
 
